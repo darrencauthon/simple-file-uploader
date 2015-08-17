@@ -8,11 +8,12 @@ function home(response, postData) {
 
 function upload(response, postData) {
 
+  var uuid = require('uuid');
   var file = JSON.parse(postData);
   var fileRootName = file.name.split('.').shift();
   var fileExtension = file.name.split('.').pop();
   var filePathBase = config.upload_dir + '/';
-  var fileRootNameWithBase = filePathBase + fileRootName;
+  var fileRootNameWithBase = filePathBase + uuid.v4();
   var filePath = fileRootNameWithBase + '.' + fileExtension;
   var fileID = 2;
   var fileBuffer;
