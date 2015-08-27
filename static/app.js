@@ -20,7 +20,8 @@
 
   var handleFileDialog = function (evt) {
     noopHandler(evt);
-    handleFiles(evt.srcElement.files);
+    var element = evt.srcElement || evt.target;
+    handleFiles(element.files);
   };
 
   var handleFiles = function (files) {
