@@ -58,16 +58,18 @@
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/upload', true);
     xhr.onreadystatechange = function () {
-      if ( document.getElementById('file-' + current_file_id) ) {
-        if ( xhr.status === 200 ) {
-          document.getElementById('file-' + current_file_id).querySelector('.progress').innerHTML = 'Uploaded';
-        } else {
-          document.getElementById('file-' + current_file_id).querySelector('.progress').innerHTML = 'Failed';
+      if (xhr.readyState == 4){
+        if ( document.getElementById('file-' + current_file_id) ) {
+          if ( xhr.status === 200 ) {
+            document.getElementById('file-' + current_file_id).querySelector('.progress').innerHTML = 'Uploaded';
+          } else {
+            document.getElementById('file-' + current_file_id).querySelector('.progress').innerHTML = 'Failed';
+          }
         }
+        all_files[current_file_id] = 1;
+        current_file_id++;
+        handleNextFile();
       }
-      all_files[current_file_id] = 1;
-      current_file_id++;
-      handleNextFile();
     };
     xhr.send(JSON.stringify(current_file));
   };
