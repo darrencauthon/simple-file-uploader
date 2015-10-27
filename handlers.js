@@ -24,7 +24,10 @@ function upload(response, postData) {
   var fileBuffer;
 
   while ( fs.existsSync(filePath) ) {
-    filePath = fileRootNameWithBase + '(' + fileID + ').' + fileExtension;
+    if (fileExtension != '')
+      filePath = fileRootNameWithBase + '(' + fileID + ').' + fileExtension;
+    else
+      filePath = fileRootNameWithBase + '(' + fileID + ')';
     fileID += 1;
   }
 
