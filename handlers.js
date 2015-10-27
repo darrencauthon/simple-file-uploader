@@ -9,11 +9,17 @@ function home(response, postData) {
 function upload(response, postData) {
 
   var file = JSON.parse(postData);
-  var fileRootName = file.name.split('.').shift();
-  var fileExtension = file.name.split('.').pop();
+  var segments = [file.name]
+  var fileExtension = '';
+  if (file.name.indexOf('.') != -1)
+  {
+    segments = file.name.split('.');
+    fileExtension = segments.pop();
+  }
+  var fileRootName = segments.join('.');
   var filePathBase = config.upload_dir + '/';
   var fileRootNameWithBase = filePathBase + fileRootName;
-  var filePath = fileRootNameWithBase + '.' + fileExtension;
+  var filePath = filePathBase + file.name;
   var fileID = 2;
   var fileBuffer;
 
