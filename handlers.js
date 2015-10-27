@@ -9,9 +9,9 @@ function home(response, postData) {
 function upload(response, postData) {
 
   var file = JSON.parse(postData);
-  var segments = [file.name]
+  var segments = [file.name];
   var fileExtension = '';
-  if (file.name.indexOf('.') != -1)
+  if ( file.name.indexOf('.') != -1 )
   {
     segments = file.name.split('.');
     fileExtension = segments.pop();
@@ -24,7 +24,7 @@ function upload(response, postData) {
   var fileBuffer;
 
   while ( fs.existsSync(filePath) ) {
-    if (fileExtension != '')
+    if ( fileExtension != '' )
       filePath = fileRootNameWithBase + '(' + fileID + ').' + fileExtension;
     else
       filePath = fileRootNameWithBase + '(' + fileID + ')';
